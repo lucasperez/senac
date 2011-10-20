@@ -10,11 +10,12 @@ import controller.MainController;
 public class MainView extends AbstractView {
 
 	private MainController mainController;
+	private Scanner sc;
 	
 	
 	public MainView () {
 		this.mainController = MainController.getInstance();
-		this.sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 	}
 	
 	@Override

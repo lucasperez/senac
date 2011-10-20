@@ -9,9 +9,10 @@ import controller.PacienteController;
 public class PacienteAlterarView extends AbstractView<Paciente> {
 
 	private PacienteController pacienteController;
+	private Scanner sc;
 	
 	public PacienteAlterarView () {
-		this.sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		this.pacienteController = PacienteController.getInstance();
 	}
 	

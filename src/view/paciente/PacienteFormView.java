@@ -13,11 +13,12 @@ public class PacienteFormView extends AbstractView<Paciente> {
 	private String mensagemNome;
 	private String mensagemDataNascimento;
 	private String mensagemPlanoSaude;
+	private Scanner sc;
 
 
 	
 	public PacienteFormView () {
-		this.sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		this.pacienteController = PacienteController.getInstance();
 	}
 	

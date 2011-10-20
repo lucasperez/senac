@@ -10,9 +10,10 @@ import util.DataUtil;
 public class PacienteListView extends AbstractView<Paciente> {
 	
 	private PacienteController pacienteController;
+	private Scanner sc;
 	
 	public PacienteListView () {
-		this.sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		this.pacienteController = PacienteController.getInstance();
 	}
 	

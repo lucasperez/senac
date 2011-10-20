@@ -14,9 +14,10 @@ public class MedicoFormView extends AbstractView<Medico> {
 	private String mensagemEspecialidade;
 	private String mensagemLogin;
 	private String mensagemSenha;
+	private Scanner sc;
 	
 	public MedicoFormView () {
-		this.sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		this.medicoController = MedicoController.getInstance();
 	}
 	

@@ -13,8 +13,6 @@ public abstract class AbstractView<T extends IModel>  {
 	//Usado em telas com um único elemento
 	private T modelo;
 	
-	protected Scanner sc;
-	
 	public void exibeTela() {
 		desenhaCabecalho();
 		desenhaTela();
@@ -41,14 +39,6 @@ public abstract class AbstractView<T extends IModel>  {
 
 	public void setListModelo(List<T> listModelo) {
 		this.listModelo = listModelo;
-	}
-
-	public Scanner getSc() {
-		return sc;
-	}
-
-	public void setSc(Scanner sc) {
-		this.sc = sc;
 	}
 
 	public T getModelo() {

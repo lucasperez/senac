@@ -9,9 +9,10 @@ import view.AbstractView;
 public class PacienteExcluirView extends AbstractView<Paciente> {
 
 	private PacienteController pacienteController;
+	private Scanner sc;
 	
 	public PacienteExcluirView () {
-		this.sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		this.pacienteController = PacienteController.getInstance();
 	}
 	

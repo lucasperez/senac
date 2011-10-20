@@ -9,9 +9,10 @@ import controller.MedicoController;
 public class MedicoView extends AbstractView<Medico> {
 	
 	private MedicoController medicoController;
+	private Scanner sc;
 	
 	public MedicoView () {
-		this.sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		this.medicoController = MedicoController.getInstance();
 	}
 	

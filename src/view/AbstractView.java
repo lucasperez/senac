@@ -49,6 +49,4 @@ public abstract class AbstractView<T extends IModel>  {
 		this.modelo = modelo;
 	}
 	
-	
-	
 }

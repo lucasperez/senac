@@ -25,6 +25,7 @@ public class MainController extends AbstractController{
 		this.acoes.put(0,"mainView");
 		this.acoes.put(1,"medicoView");
 		this.acoes.put(2,"pacienteView");
+		this.acoes.put(5, "relatorioView");
 		this.acoes.put(6,"sair");
 	}
 	

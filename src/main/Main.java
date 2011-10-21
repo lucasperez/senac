@@ -12,10 +12,12 @@ import view.paciente.PacienteExcluirView;
 import view.paciente.PacienteFormView;
 import view.paciente.PacienteListView;
 import view.paciente.PacienteView;
+import view.relatorio.RelatorioView;
 import controller.LoginController;
 import controller.MainController;
 import controller.MedicoController;
 import controller.PacienteController;
+import controller.RelatorioController;
 
 public class Main {
 
@@ -42,6 +44,9 @@ public class Main {
 		PacienteController.getInstance().registrarView("pacienteFormView", new PacienteFormView());
 		PacienteController.getInstance().registrarView("pacienteAlterarView", new PacienteAlterarView());
 		PacienteController.getInstance().registrarView("pacienteExcluirView", new PacienteExcluirView());
+		
+		RelatorioController.getInstance().registrarView("relatorioView", new RelatorioView());
+		RelatorioController.getInstance().registrarView("relatorioPacienteListView", new RelatorioView());
 		
 		LoginController.getInstance().acaoEscolhida("loginView");
 

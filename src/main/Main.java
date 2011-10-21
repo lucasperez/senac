@@ -32,6 +32,8 @@ public class Main {
 		
 		MainController.getInstance().registrarView("pacienteView", new PacienteView());
 		
+		MainController.getInstance().registrarView("relatorioView", new RelatorioView());
+		
 				
 		MedicoController.getInstance().registrarView("medicoView", new MedicoView());
 		MedicoController.getInstance().registrarView("medicoListView", new MedicoListView());

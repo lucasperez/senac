@@ -22,8 +22,8 @@
 				<text><![CDATA[Lista de Pacentes]]></text>
 			</staticText>
 			<image>
-				<reportElement x="191" y="14" width="145" height="95"/>
-				<imageExpression><![CDATA["E:\\eclipse\\fatec\\consultorio\\img\\logo.jpg"]]></imageExpression>
+				<reportElement x="191" y="17" width="145" height="95"/>
+				<imageExpression><![CDATA["E:\\eclipse\\fatec\\git\\senac\\img\\logo.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

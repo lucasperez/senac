@@ -48,11 +48,11 @@ public class RelatorioController extends AbstractController<Paciente> {
 			try {
 				relatorio.gerar("ListarPacientes.jrxml","Lista de Pacientes");
 			} catch (JRException e) {
-				e.printStackTrace();
+				redirecionaParaMenu();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				redirecionaParaMenu();
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				redirecionaParaMenu();
 			}finally{
 				this.acaoEscolhida("relatorioView");
 			}

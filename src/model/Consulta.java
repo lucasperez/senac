@@ -20,6 +20,10 @@ public class Consulta {
 	private Receita receita;
 	@ManyToOne
 	private Atendente atendente;
+	@ManyToOne
+	private Medico medico;
+	@ManyToOne
+	private Paciente paciente;
 	
 	public Long getId() {
 		return id;
@@ -63,7 +67,16 @@ public class Consulta {
 	public void setAtendente(Atendente atendente) {
 		this.atendente = atendente;
 	}
-	
-	
-	
+	public Medico getMedico() {
+		return medico;
+	}
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+	public Paciente getPaciente() {
+		return paciente;
+	}
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
 }

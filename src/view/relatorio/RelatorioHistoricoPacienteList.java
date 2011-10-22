@@ -2,6 +2,8 @@ package view.relatorio;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+
+import dao.ConsultaDao;
 import dao.PacienteDao;
 
 import net.sf.jasperreports.engine.JRException;
@@ -17,7 +19,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class RelatorioHistoricoPacienteList {
 	
-	PacienteDao pacienteDao = new PacienteDao();
+	ConsultaDao consultaDao = new ConsultaDao();
 	
 	public RelatorioHistoricoPacienteList() {
 		
@@ -30,21 +32,21 @@ public class RelatorioHistoricoPacienteList {
 		
 		// gerando o jasper design
 		JasperDesign desenho = JRXmlLoader.load(layout);
-
+		System.out.println("Carregou layout do Histórico");
 		// compila o relatório
 		JasperReport relatorio = JasperCompileManager.compileReport(desenho);
 
 		// implementação da interface JRDataSource para DataSource ResultSet
-		JRBeanCollectionDataSource jrRS = new JRBeanCollectionDataSource(pacienteDao.listaPacientes());
+		JRBeanCollectionDataSource jrRS = new JRBeanCollectionDataSource(consultaDao.listaConsultas());
 		
 		// executa o relatório
 		HashMap<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("subtitulo", titulo);
+		//parametros.put("subtitulo", titulo);
 		
 		JasperPrint impressao = JasperFillManager.fillReport(relatorio,	parametros, jrRS);
 
 		//gerando para arquivo em disco
-		JasperExportManager.exportReportToPdfFile(impressao, "Lista_Pacientes.pdf");
+		JasperExportManager.exportReportToPdfFile(impressao, "Lista_Historico_Pacientes.pdf");
 
 
 		// exibe o resultado

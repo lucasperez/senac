@@ -59,6 +59,18 @@ public class RelatorioController extends AbstractController<Paciente> {
 			
 		}
 		else if (acao.equals("relatorioHistoricoPacienteListView")) {
+			RelatorioPacienteListView relatorio = new RelatorioPacienteListView();
+			try {
+				relatorio.gerar("ListarHistoricoPacientes.jrxml","Lista de Pacientes");
+			} catch (JRException e) {
+				redirecionaParaMenu();
+			} catch (SQLException e) {
+				redirecionaParaMenu();
+			} catch (ClassNotFoundException e) {
+				redirecionaParaMenu();
+			}finally{
+				this.acaoEscolhida("relatorioView");
+			}
 			
 		}
 		

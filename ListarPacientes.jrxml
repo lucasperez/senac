@@ -13,18 +13,14 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="237" splitType="Stretch">
+		<band height="131" splitType="Stretch">
 			<staticText>
-				<reportElement x="126" y="142" width="302" height="46" forecolor="#0066CC"/>
+				<reportElement x="126" y="29" width="302" height="46" forecolor="#0066CC"/>
 				<textElement>
 					<font fontName="Arial Black" size="30"/>
 				</textElement>
 				<text><![CDATA[Lista de Pacentes]]></text>
 			</staticText>
-			<image>
-				<reportElement x="191" y="17" width="145" height="95"/>
-				<imageExpression><![CDATA["E:\\eclipse\\fatec\\git\\senac\\img\\logo.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<columnHeader>

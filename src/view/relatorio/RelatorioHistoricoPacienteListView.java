@@ -17,11 +17,11 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class RelatorioHistoricoPacienteList {
+public class RelatorioHistoricoPacienteListView {
 	
 	ConsultaDao consultaDao = new ConsultaDao();
 	
-	public RelatorioHistoricoPacienteList() {
+	public RelatorioHistoricoPacienteListView() {
 		
 	}
 
@@ -32,7 +32,7 @@ public class RelatorioHistoricoPacienteList {
 		
 		// gerando o jasper design
 		JasperDesign desenho = JRXmlLoader.load(layout);
-		System.out.println("Carregou layout do Histórico");
+		
 		// compila o relatório
 		JasperReport relatorio = JasperCompileManager.compileReport(desenho);
 

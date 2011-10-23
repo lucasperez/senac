@@ -30,13 +30,13 @@ public class RelatorioPacienteListView {
 		
 		// gerando o jasper design
 		JasperDesign desenho = JRXmlLoader.load(layout);
-		System.out.println("Carregou layout");
+		
 		// compila o relatório
 		JasperReport relatorio = JasperCompileManager.compileReport(desenho);
-		System.out.println("Carregou relatorio");
+		
 		// implementação da interface JRDataSource para DataSource ResultSet
 		JRBeanCollectionDataSource jrRS = new JRBeanCollectionDataSource(pacienteDao.listaPacientes());
-		System.out.println("Listou Classe DAO");
+		
 		// executa o relatório
 		HashMap<String, Object> parametros = new HashMap<String, Object>();
 		//parametros.put("subtitulo", titulo);

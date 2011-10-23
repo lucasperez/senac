@@ -9,6 +9,7 @@ import net.sf.jasperreports.engine.JRException;
 
 import model.Paciente;
 import view.AbstractView;
+import view.relatorio.RelatorioHistoricoPacienteListView;
 import view.relatorio.RelatorioPacienteListView;
 
 public class RelatorioController extends AbstractController<Paciente> {
@@ -59,9 +60,9 @@ public class RelatorioController extends AbstractController<Paciente> {
 			
 		}
 		else if (acao.equals("relatorioHistoricoPacienteListView")) {
-			RelatorioPacienteListView relatorio = new RelatorioPacienteListView();
+			RelatorioHistoricoPacienteListView relatorio = new RelatorioHistoricoPacienteListView();
 			try {
-				relatorio.gerar("ListarHistoricoPacientes.jrxml","Lista de Pacientes");
+				relatorio.gerar("ListarHistoricoPacientes.jrxml","Lista Historico de Pacientes");
 			} catch (JRException e) {
 				redirecionaParaMenu();
 			} catch (SQLException e) {

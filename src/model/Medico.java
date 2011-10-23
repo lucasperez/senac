@@ -1,12 +1,18 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Medico extends Usuario implements IModel{
-	
+public class Medico extends Usuario implements IModel,Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String crm;
 	private String nome;
 	private String especialidade;

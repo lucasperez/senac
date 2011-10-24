@@ -1,7 +1,12 @@
 package main;
 
+import java.io.IOException;
+import java.util.Locale;
+import java.util.Properties;
+
 import report.RelatorioHistoricoPaciente;
 import report.RelatorioPaciente;
+import teste.TestaInternacionalizacao;
 import view.consulta.AgendarConsultaView;
 import view.consulta.AtualizarConsultaView;
 import view.consulta.CancelarConsultaView;
@@ -29,11 +34,18 @@ import controller.RelatorioController;
 /**
  * 
  * @author Lucas
- * Classe inicial do sistema, nela regustramos as views nos respectivos controllers 
+ * Classe inicial do sistema, nela registramos as views nos respectivos controllers 
  */
 public class Main {
 
 	public static void main(String[] args) {
+		
+		//defino o idioma padrão do sistema
+		try {
+			defineIdiomaSistema();
+		} catch (IOException e) {
+			
+		}
 		
 		//Registro das ações que os controladores poderão realizar 
 		LoginController.getInstance().registrarView("loginView", new LoginView());
@@ -70,4 +82,10 @@ public class Main {
 
 	}
 
+	private static void defineIdiomaSistema() throws IOException {
+		Properties p = new Properties();
+		p.load(TestaInternacionalizacao.class.getClassLoader().getResourceAsStream("consultorio.properties"));
+		Locale locale = new Locale(p.getProperty("idiomaPadrao"),p.getProperty("paisPadrao"));
+		Locale.setDefault(locale);
+	}
 }

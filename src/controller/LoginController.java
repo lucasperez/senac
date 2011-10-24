@@ -34,6 +34,7 @@ public class LoginController extends AbstractController<Usuario>{
 		this.acoes.put(0,"loginView");
 		loginDao = new LoginDao();
 	}
+	
 	/**
 	 * Implementação do método registrarView
 	 */

@@ -1,5 +1,7 @@
 package view.login;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import model.Usuario;
@@ -23,9 +25,10 @@ public class LoginView extends AbstractView<Usuario> {
 	@Override
 	protected void desenhaTela() {
 		
-		System.out.println("Digite seu login: ");
+		ResourceBundle rb = ResourceBundle.getBundle("resources.MessagesBundle", Locale.getDefault());
+		System.out.println(rb.getString("labelLogin"));
 		String login = scanner.next();
-		System.out.println("Digite sua senha: ");
+		System.out.println(rb.getString("labelSenha"));
 		String senha = scanner.next();
 		
 		this.getModelo().setLogin(login);

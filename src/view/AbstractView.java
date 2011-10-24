@@ -1,6 +1,8 @@
 package view;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import model.IModel;
 /**
@@ -53,8 +55,9 @@ public abstract class AbstractView<T extends IModel>  {
 	 */
 	private void desenhaCabecalho() {
 		limpaTela();
+		ResourceBundle rb = ResourceBundle.getBundle("resources.MessagesBundle", Locale.getDefault());
 		System.out.println("-----------------------------------------------");
-		System.out.println("SISTEMA DE CONSULTÓRIO MÉDICO");
+		System.out.println(rb.getString("titMain"));
 		System.out.println("-----------------------------------------------");
 	}
 	/**

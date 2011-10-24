@@ -1,21 +1,21 @@
 package teste;
 
-import java.util.*;
-
-
+import java.io.IOException;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class TestaInternacionalizacao {
+	
+	public static void main(String[] args) throws IOException {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Properties p = new Properties();
+		p.load(TestaInternacionalizacao.class.getClassLoader().getResourceAsStream("consultorio.properties"));
 		
-			Locale locale = new Locale("pt","br");
-			ResourceBundle rb = ResourceBundle.getBundle("resources.MessagesBundle", locale);
-			
-			System.out.println(rb.getString("localeInfo"));	
+		Locale locale = new Locale(p.getProperty("idiomaPadrao"),p.getProperty("paisPadrao"));
+		ResourceBundle rb = ResourceBundle.getBundle("resources.MessagesBundle", locale);
+		
+		System.out.println(rb.getString("labelLogin"));	
 		
 
 	}

@@ -16,7 +16,9 @@ public class MedicoView extends AbstractView<Medico> {
 		this.medicoController = MedicoController.getInstance();
 	}
 	
-	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		

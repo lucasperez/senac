@@ -11,11 +11,17 @@ import util.Hibernate;
 public class LoginDao {
 
 	private Session session;
-	
+	/**
+	 * Construtor instancia a session do Hibernate
+	 */
 	public LoginDao() {
 		session = new Hibernate(CriadorSessionFactory.getInstance().getFactory()).getSession();
 	}
-	
+	/**
+	 * Loga usuários no sistema
+	 * @param usuario
+	 * @return {@link Usuario}
+	 */
 	public Usuario logar(Usuario usuario) {
 		return (Usuario) session.createCriteria(Usuario.class)
 		.add(Restrictions.eq("login", usuario.getLogin()))

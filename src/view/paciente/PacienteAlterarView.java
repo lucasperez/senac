@@ -16,6 +16,9 @@ public class PacienteAlterarView extends AbstractView<Paciente> {
 		this.pacienteController = PacienteController.getInstance();
 	}
 	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		System.out.println("Digite o id do paciente que você deseja alterar: ");

@@ -14,7 +14,11 @@ public class LoginController extends AbstractController<Usuario>{
 	
 	// Singleton
 	private static LoginController singleton = null;
-		
+	/**
+	 * Método responsável pela garantia de que só existe 1 único objeto controller dentro do sistema
+	 * Uso do padrão singleton para garantir. 	
+	 * @return {@link LoginController}
+	 */
 	public static LoginController getInstance()
 	{
 		if (singleton == null)
@@ -22,19 +26,25 @@ public class LoginController extends AbstractController<Usuario>{
 		
 		return singleton;
 	}	
-		
+	/**
+	 * Construtor privado que só pode ser acessado via getInstance
+	 */	
 	private LoginController(){		
 		//Mapeamento dos numeros do menu com as ações registradas
 		this.acoes.put(0,"loginView");
 		loginDao = new LoginDao();
 	}
-	
+	/**
+	 * Implementação do método registrarView
+	 */
 	@Override
 	public AbstractController<Usuario> registrarView(String acao,AbstractView<Usuario> view) {
 		this.views.put(acao, view);
 		return this;
 	}
-	
+	/**
+	 * Implementação do método acaoEscolhida
+	 */
 	@Override
 	public void acaoEscolhida(String acao) {
 		if (acao.equals("login")) {
@@ -50,11 +60,18 @@ public class LoginController extends AbstractController<Usuario>{
 			renderizaView("loginView");
 		}
 	}
+	/**
+	 * Implementação do método renderizaView
+	 */
 	@Override
 	public void renderizaView(String acao) {
 		views.get(acao).exibeTela();
 	}
-	
+	/**
+	 * 
+	 * @param u
+	 * @return {@link Boolean}
+	 */
 	public boolean login(Usuario u) {
 		if (loginDao.logar(u)!= null)
 			return true;

@@ -16,6 +16,9 @@ public class MedicoExcluirView extends AbstractView<Medico> {
 		this.medicoController = MedicoController.getInstance();
 	}
 	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		System.out.println("Digite o id do médico que você deseja excluir: ");

@@ -19,7 +19,11 @@ public class RelatorioController extends AbstractController<Paciente> {
 	private Map<String,Relatorio> relatorios = new HashMap<String, Relatorio>();
 	private PacienteDao pacienteDao; 
 	private ConsultaDao consultaDao;
-			
+	/**
+	 * Método responsável pela garantia de que só existe 1 único objeto controller dentro do sistema
+	 * Uso do padrão singleton para garantir. 	
+	 * @return {@link RelatorioController}
+	 */		
 	public static RelatorioController getInstance()
 	{
 		if (singleton == null)
@@ -27,7 +31,9 @@ public class RelatorioController extends AbstractController<Paciente> {
 		
 		return singleton;
 	}	
-		
+	/**
+	 * Construtor privado que só pode ser acessado via getInstance
+	 */	
 	private RelatorioController() {
 		this.views = new HashMap<String, AbstractView<Paciente>>();
 		acoes.put(0, "relatorioView");
@@ -37,7 +43,9 @@ public class RelatorioController extends AbstractController<Paciente> {
 		this.pacienteDao = new PacienteDao();
 		this.consultaDao = new ConsultaDao();
 	}
-	
+	/**
+	 * Implementação do método registrarView
+	 */
 	@Override
 	public RelatorioController registrarView(String acao,AbstractView<Paciente> view) {
 		this.views.put(acao, view);
@@ -49,7 +57,9 @@ public class RelatorioController extends AbstractController<Paciente> {
 		this.relatorios.put(acao, relatorio);
 		return this;
 	}
-	
+	/**
+	 * Implementação do método acaoEscolhida
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void acaoEscolhida(String acao) {
@@ -97,7 +107,9 @@ public class RelatorioController extends AbstractController<Paciente> {
 			renderizaView(acao);
 		}
 	}
-	
+	/**
+	 * Implementação do método renderizaView
+	 */
 	public void renderizaView(String acao) {
 		try {
 			views.get(acao).exibeTela();
@@ -106,7 +118,9 @@ public class RelatorioController extends AbstractController<Paciente> {
 			redirecionaParaMenu();
 		}
 	}
-
+	/**
+	 * Método que redireciona para o menu principal
+	 */
 	private void redirecionaParaMenu() {
 		
 		System.out.println("Ação não permitida !!! Aguarde que estamos redirecionando você para o menu principal");

@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Status implements Serializable{
+public class Status implements IModel, Serializable{
 	/**
 	 * 
 	 */

@@ -15,7 +15,9 @@ public class MedicoListView extends AbstractView<Medico> {
 		sc = new Scanner(System.in);
 		this.medicoController = MedicoController.getInstance();
 	}
-	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		for (Medico m:getListModelo()) {

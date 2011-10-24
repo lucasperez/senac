@@ -5,8 +5,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DataUtil {
+public abstract class DataUtil {
 	
+	/**
+	 * Método Estático para a conversão de datas
+	 * @param dataBrasileira
+	 * @return
+	 */
 	public static Date stringBrToDate(String dataBrasileira) {  
 		   
 		Date data = null;  
@@ -22,7 +27,11 @@ public class DataUtil {
 		}
 		return data;  
 	}
-	
+	/**
+	 * Método Estático para a conversão de datas
+	 * @param dataBrasileira
+	 * @return
+	 */
 	public static String dateUsToStringBr(Date dataAmericana) {  
 		 
 		String dataString = "";

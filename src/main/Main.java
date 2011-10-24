@@ -2,6 +2,10 @@ package main;
 
 import report.RelatorioHistoricoPaciente;
 import report.RelatorioPaciente;
+import view.consulta.AgendarConsultaView;
+import view.consulta.AtualizarConsultaView;
+import view.consulta.CancelarConsultaView;
+import view.consulta.ConsultaView;
 import view.login.LoginView;
 import view.main.MainView;
 import view.medico.MedicoAlterarView;
@@ -15,12 +19,18 @@ import view.paciente.PacienteFormView;
 import view.paciente.PacienteListView;
 import view.paciente.PacienteView;
 import view.relatorio.RelatorioView;
+import controller.ConsultaController;
 import controller.LoginController;
 import controller.MainController;
 import controller.MedicoController;
 import controller.PacienteController;
 import controller.RelatorioController;
 
+/**
+ * 
+ * @author Lucas
+ * Classe inicial do sistema, nela regustramos as views nos respectivos controllers 
+ */
 public class Main {
 
 	public static void main(String[] args) {
@@ -31,6 +41,7 @@ public class Main {
 		MainController.getInstance().registrarView("mainView", new MainView());
 		MainController.getInstance().registrarView("medicoView", new MedicoView());
 		MainController.getInstance().registrarView("pacienteView", new PacienteView());
+		MainController.getInstance().registrarView("consultaView", new ConsultaView());
 		MainController.getInstance().registrarView("relatorioView", new RelatorioView());
 		
 				
@@ -46,6 +57,11 @@ public class Main {
 		PacienteController.getInstance().registrarView("pacienteAlterarView", new PacienteAlterarView());
 		PacienteController.getInstance().registrarView("pacienteExcluirView", new PacienteExcluirView());
 
+		ConsultaController.getInstance().registrarView("consultaView", new ConsultaView());
+		ConsultaController.getInstance().registrarView("agendarConsultaView", new AgendarConsultaView());
+		ConsultaController.getInstance().registrarView("cancelarConsultaView", new CancelarConsultaView());
+		ConsultaController.getInstance().registrarView("atualizarConsultaView", new AtualizarConsultaView());
+		
 		RelatorioController.getInstance().registrarView("relatorioView", new RelatorioView());
 		RelatorioController.getInstance().registrarRelatorio("relatorioPaciente", new RelatorioPaciente());
 		RelatorioController.getInstance().registrarRelatorio("relatorioHistoricoPaciente", new RelatorioHistoricoPaciente());

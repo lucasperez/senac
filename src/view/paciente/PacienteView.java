@@ -17,7 +17,9 @@ private Scanner sc;
 		this.pacienteController = PacienteController.getInstance();
 	}
 	
-	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		

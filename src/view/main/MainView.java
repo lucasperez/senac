@@ -3,7 +3,6 @@ package view.main;
 import java.util.Scanner;
 
 import view.AbstractView;
-
 import controller.MainController;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })

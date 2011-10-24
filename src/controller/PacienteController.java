@@ -13,7 +13,11 @@ public class PacienteController extends AbstractController<Paciente> {
 	private static PacienteController singleton = null;
 	private Map<String,AbstractView<Paciente>> views = new HashMap<String, AbstractView<Paciente>>();
 	private PacienteDao pacienteDao;
-		
+	/**
+	 * Método responsável pela garantia de que só existe 1 único objeto controller dentro do sistema
+	 * Uso do padrão singleton para garantir. 	
+	 * @return {@link PacienteController}
+	 */	
 	public static PacienteController getInstance()
 	{
 		if (singleton == null)
@@ -21,7 +25,9 @@ public class PacienteController extends AbstractController<Paciente> {
 		
 		return singleton;
 	}	
-		
+	/**
+	 * Construtor privado que só pode ser acessado via getInstance
+	 */	
 	private PacienteController() {
 		this.views = new HashMap<String, AbstractView<Paciente>>();
 		acoes.put(0, "pacienteView");
@@ -32,13 +38,17 @@ public class PacienteController extends AbstractController<Paciente> {
 		acoes.put(5, "mainView");
 		pacienteDao = new PacienteDao();
 	}
-	
+	/**
+	 * Implementação do método registrarView
+	 */
 	@Override
 	public PacienteController registrarView(String acao,AbstractView<Paciente> view) {
 		this.views.put(acao, view);
 		return this;
 	}
-	
+	/**
+	 * Implementação do método acaoEscolhida
+	 */
 	@Override
 	public void acaoEscolhida(String acao) {
 		if (acao == null) {
@@ -77,7 +87,9 @@ public class PacienteController extends AbstractController<Paciente> {
 			renderizaView(acao);
 		}
 	}
-	
+	/**
+	 * Implementação do método renderizaView
+	 */
 	public void renderizaView(String acao) {
 		try {
 			views.get(acao).exibeTela();
@@ -86,7 +98,9 @@ public class PacienteController extends AbstractController<Paciente> {
 			redirecionaParaMenu();
 		}
 	}
-
+	/**
+	 * Método que redireciona para o menu principal
+	 */
 	private void redirecionaParaMenu() {
 		
 		System.out.println("Ação não permitida !!! Aguarde que estamos redirecionando você para o menu principal");
@@ -98,23 +112,40 @@ public class PacienteController extends AbstractController<Paciente> {
 		
 		this.acaoEscolhida("pacienteView");
 	}
-	
+	/**
+	 * Método que lista todos os pacientes
+	 * @return {@link List}
+	 */
 	private List<Paciente> listaPacientes(){
 		return pacienteDao.listaPacientes();
 	}
-	
+
+	/**
+	 * Método que salva o paciente
+	 * @param paciente
+	 * @return {@link Boolean}
+	 */
 	public boolean salvarPaciente(Paciente paciente) {
 		if (pacienteDao.save(paciente)) 
 			return true;
 		return false;
 		
 	}
-
+	
+	/**
+	 * Método que carrega paciente dado o Id
+	 * @param id
+	 * @return {@link Paciente}
+	 */
 	public Paciente carregaPacientePorId(Long id) {
 		return pacienteDao.carregaPacientePorId(id);
 		
 	}
-	
+	/**
+	 * Método que exclui 1 paciente
+	 * @param paciente
+	 * @return {@link Boolean}
+	 */
 	public boolean excluirPaciente(Paciente paciente) {
 		if (pacienteDao.excluir(paciente)) 
 			return true;

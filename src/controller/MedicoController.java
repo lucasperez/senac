@@ -13,7 +13,12 @@ public class MedicoController extends AbstractController<Medico> {
 	private static MedicoController singleton = null;
 	private Map<String,AbstractView<Medico>> views = new HashMap<String, AbstractView<Medico>>();
 	private MedicoDao medicoDao;
-		
+	
+	/**
+	 * Método responsável pela garantia de que só existe 1 único objeto controller dentro do sistema
+	 * Uso do padrão singleton para garantir. 	
+	 * @return {@link MedicoController}
+	 */
 	public static MedicoController getInstance()
 	{
 		if (singleton == null)
@@ -21,7 +26,9 @@ public class MedicoController extends AbstractController<Medico> {
 		
 		return singleton;
 	}	
-		
+	/**
+	 * Construtor privado que só pode ser acessado via getInstance
+	 */
 	private MedicoController() {
 		this.views = new HashMap<String, AbstractView<Medico>>();
 		acoes.put(0, "medicoView");
@@ -33,12 +40,18 @@ public class MedicoController extends AbstractController<Medico> {
 		medicoDao = new MedicoDao();
 	}
 	
+	/**
+	 * Implementação do método registrarView
+	 */
 	@Override
 	public MedicoController registrarView(String acao,AbstractView<Medico> view) {
 		this.views.put(acao, view);
 		return this;
 	}
 	
+	/**
+	 * Implementação do método acaoEscolhida
+	 */
 	@Override
 	public void acaoEscolhida(String acao) {
 		if (acao == null) {
@@ -78,6 +91,9 @@ public class MedicoController extends AbstractController<Medico> {
 		}
 	}
 	
+	/**
+	 * Implementação do método renderizaView
+	 */
 	public void renderizaView(String acao) {
 		try {
 			views.get(acao).exibeTela();
@@ -87,6 +103,9 @@ public class MedicoController extends AbstractController<Medico> {
 		}
 	}
 
+	/**
+	 * Método que redireciona para o menu principal
+	 */
 	private void redirecionaParaMenu() {
 		
 		System.out.println("Ação não permitida !!! Aguarde que estamos redirecionando você para o menu principal");
@@ -98,23 +117,39 @@ public class MedicoController extends AbstractController<Medico> {
 		
 		this.acaoEscolhida("medicoView");
 	}
-	
+	/**
+	 * Método que vai ao Dao e lista todos os médicos
+	 * @return {@link List}
+	 */
 	private List<Medico> listaMedicos(){
 		return medicoDao.listaMedicos();
 	}
 	
+	/**
+	 * 
+	 * @param medico
+	 * @return {@link Boolean}
+	 */
 	public boolean salvarMedico(Medico medico) {
 		if (medicoDao.save(medico)) 
 			return true;
 		return false;
 		
 	}
-
+	/**
+	 * Método que carrega um Médico
+	 * @param id
+	 * @return {@link Medico}
+	 */
 	public Medico carregaMedicoPorId(Long id) {
 		return medicoDao.carregaMedicoPorId(id);
 		
 	}
-	
+	/**
+	 * Método que exclui um médico
+	 * @param medico
+	 * @return boolean
+	 */
 	public boolean excluirMedico(Medico medico) {
 		if (medicoDao.excluir(medico)) 
 			return true;

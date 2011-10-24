@@ -18,7 +18,9 @@ private RelatorioController relatorioController;
 		this.relatorioController = RelatorioController.getInstance();
 	}
 	
-	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		

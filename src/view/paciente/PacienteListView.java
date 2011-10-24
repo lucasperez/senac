@@ -16,7 +16,9 @@ public class PacienteListView extends AbstractView<Paciente> {
 		sc = new Scanner(System.in);
 		this.pacienteController = PacienteController.getInstance();
 	}
-	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		for (Paciente p:getListModelo()) {

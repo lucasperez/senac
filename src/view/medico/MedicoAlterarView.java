@@ -15,7 +15,9 @@ public class MedicoAlterarView extends AbstractView<Medico> {
 		sc = new Scanner(System.in);
 		this.medicoController = MedicoController.getInstance();
 	}
-	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		System.out.println("Digite o id do médico que você deseja alterar: ");

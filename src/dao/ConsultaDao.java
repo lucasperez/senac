@@ -14,16 +14,26 @@ import util.Hibernate;
 public class ConsultaDao {
 	
 	private Session session;
-	
+	/**
+	 * Construtor instancia a session do Hibernate
+	 */
 	public ConsultaDao() {
 		session = new Hibernate(CriadorSessionFactory.getInstance().getFactory()).getSession();
 	}
 	
+	/**
+	 * Lista todos os objetos
+	 * @return {@link List}
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Consulta> listaConsultas() {
 		return (List<Consulta>)session.createCriteria(Consulta.class).addOrder(Order.asc("paciente")).list();
 	}
-
+	/**
+	 * Salva o objeto
+	 * @param consulta
+	 * @return {@link Boolean}
+	 */
 	public boolean save(Consulta consulta) {
 	
 		Transaction t = session.beginTransaction();
@@ -36,13 +46,59 @@ public class ConsultaDao {
 		catch(Exception e) {
 			t.rollback();
 		}
+		finally {
+			session.clear();
+			session.close();
+		}
 		return false;
 	}
-
+	/**
+	 * Atualiza o objeto
+	 * @param consulta
+	 * @return {@link Boolean}
+	 */
+	public boolean update(Consulta consulta) {
+		
+		Transaction t = session.beginTransaction();
+		try {
+			t.begin();
+			session.save(consulta.getReceita());
+			session.merge(consulta);
+			t.commit();
+			return true;
+		}
+		catch(Exception e) {
+			t.rollback();
+		}
+		finally {
+			session.clear();
+			session.close();
+		}
+		return false;
+	}
+	/**
+	 * Busca objeto por id
+	 * @param id
+	 * @return {@link Consulta}
+	 */
 	public Consulta carregaConsultaPorId(Long id) {
 		return (Consulta) session.load(Consulta.class, id);
 	}
-	
+	/**
+	 * Refresh no objeto
+	 * @param c
+	 * @return {@link Consulta}
+	 */
+	public Consulta refresh(Consulta c) {
+		 session.refresh(c);
+		 session.flush();
+		 return c;
+	}
+	/**
+	 * Exclui objeto
+	 * @param consulta
+	 * @return {@link Boolean}
+	 */
 	public boolean excluir(Consulta consulta) {
 		
 		Transaction t = session.beginTransaction();

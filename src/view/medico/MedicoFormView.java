@@ -20,7 +20,9 @@ public class MedicoFormView extends AbstractView<Medico> {
 		sc = new Scanner(System.in);
 		this.medicoController = MedicoController.getInstance();
 	}
-	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		
@@ -33,14 +35,23 @@ public class MedicoFormView extends AbstractView<Medico> {
 		medicoController.acaoEscolhida("salvar");
 		
 	}
-
+	/**
+	 * Método que escreve na tela, recupera dados digitados e popula modelo (neste caso de consulta)
+	 * @param c
+	 */
 	private void interfaceUsuario(Medico m) {
 		System.out.println(mensagemNome);
-		String nome = sc.next();
+		String nome = sc.nextLine();
+		sc.nextLine();
+		
 		System.out.println(mensagemCrm);
 		String crm = sc.next();
+		
 		System.out.println(mensagemEspecialidade);
-		String especialidade = sc.next();
+		String especialidade = sc.nextLine();
+		
+		sc.nextLine();
+		
 		System.out.println(mensagemLogin);
 		String login = sc.next();
 		System.out.println(mensagemSenha);
@@ -54,7 +65,9 @@ public class MedicoFormView extends AbstractView<Medico> {
 		
 		this.setModelo(m);
 	}
-
+	/**
+	 * Método usado apenas para definir as labels da tela
+	 */
 	private void defineLabels() {
 		mensagemNome = "Digite o nome ";
 		mensagemCrm = "Digite o crm: ";
@@ -70,7 +83,10 @@ public class MedicoFormView extends AbstractView<Medico> {
 			mensagemSenha+="("+this.getModelo().getSenha()+")";
 		}
 	}
-
+	/**
+	 * Método que define se vai criar um novo modelo ou usar o que já foi setado no controller
+	 * @return {@link Medico}
+	 */
 	private Medico defineModelo() {
 		Medico m = null;
 		if (this.getModelo() == null) 

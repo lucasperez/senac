@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Consulta implements IModel,Serializable{
 	private String sala;
 	@ManyToOne
 	private Status status;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Receita receita;
 	@ManyToOne
 	private Atendente atendente;

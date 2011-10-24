@@ -17,12 +17,9 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class RelatorioPaciente implements Relatorio<Paciente>{
-	
-	
-	public RelatorioPaciente() {
-		
-	}
-
+	/**
+	 * Implementação do método gerar
+	 */
 	@Override
 	public void gerar(String layout, String titulo, String nomeArquivo,	List<Paciente> listaPacientes) throws JRException, SQLException,ClassNotFoundException {
 

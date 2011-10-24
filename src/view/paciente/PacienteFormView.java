@@ -15,13 +15,14 @@ public class PacienteFormView extends AbstractView<Paciente> {
 	private String mensagemPlanoSaude;
 	private Scanner sc;
 
-
-	
 	public PacienteFormView () {
 		sc = new Scanner(System.in);
 		this.pacienteController = PacienteController.getInstance();
 	}
 	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		
@@ -34,14 +35,23 @@ public class PacienteFormView extends AbstractView<Paciente> {
 		pacienteController.acaoEscolhida("salvar");
 		
 	}
-
+	/**
+	 * Método que escreve na tela, recupera dados digitados e popula modelo (neste caso de consulta)
+	 * @param c
+	 */
 	private void interfaceUsuario(Paciente p) {
 		System.out.println(mensagemNome);
-		String nome = sc.next();
+		String nome = sc.nextLine();
+		
+		sc.nextLine();
+		
 		System.out.println(mensagemDataNascimento);
 		String data = sc.next();
+		
 		System.out.println(mensagemPlanoSaude);
-		String plano = sc.next();
+		String plano = sc.nextLine();
+		
+		sc.nextLine();
 		
 		p.setNome(nome);
 		p.setDataNascimento(DataUtil.stringBrToDate(data));
@@ -49,7 +59,9 @@ public class PacienteFormView extends AbstractView<Paciente> {
 		
 		this.setModelo(p);
 	}
-
+	/**
+	 * Método usado apenas para definir as labels da tela
+	 */
 	private void defineLabels() {
 		mensagemNome 			= "Digite o nome: ";
 		mensagemDataNascimento 	= "Digite a data de nascimento (dd/mm/aaaa): ";
@@ -61,7 +73,10 @@ public class PacienteFormView extends AbstractView<Paciente> {
 			mensagemPlanoSaude+="("+this.getModelo().getPlanoSaude()+")";			
 		}
 	}
-
+	/**
+	 * Método que define se vai criar um novo modelo ou usar o que já foi setado no controller
+	 * @return {@link Paciente}
+	 */
 	private Paciente defineModelo() {
 		Paciente p = null;
 		if (this.getModelo() == null) 

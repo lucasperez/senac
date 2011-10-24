@@ -17,6 +17,9 @@ public class LoginView extends AbstractView<Usuario> {
 		this.setModelo(new Usuario());
 	}
 	
+	/**
+	 * Implementação do método desenhaTela
+	 */
 	@Override
 	protected void desenhaTela() {
 		

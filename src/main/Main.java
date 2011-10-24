@@ -1,5 +1,7 @@
 package main;
 
+import report.RelatorioHistoricoPaciente;
+import report.RelatorioPaciente;
 import view.login.LoginView;
 import view.main.MainView;
 import view.medico.MedicoAlterarView;
@@ -12,7 +14,6 @@ import view.paciente.PacienteExcluirView;
 import view.paciente.PacienteFormView;
 import view.paciente.PacienteListView;
 import view.paciente.PacienteView;
-import view.relatorio.RelatorioPacienteListView;
 import view.relatorio.RelatorioView;
 import controller.LoginController;
 import controller.MainController;
@@ -28,11 +29,8 @@ public class Main {
 		LoginController.getInstance().registrarView("loginView", new LoginView());
 		
 		MainController.getInstance().registrarView("mainView", new MainView());
-		
 		MainController.getInstance().registrarView("medicoView", new MedicoView());
-		
 		MainController.getInstance().registrarView("pacienteView", new PacienteView());
-		
 		MainController.getInstance().registrarView("relatorioView", new RelatorioView());
 		
 				
@@ -47,9 +45,10 @@ public class Main {
 		PacienteController.getInstance().registrarView("pacienteFormView", new PacienteFormView());
 		PacienteController.getInstance().registrarView("pacienteAlterarView", new PacienteAlterarView());
 		PacienteController.getInstance().registrarView("pacienteExcluirView", new PacienteExcluirView());
-		
+
 		RelatorioController.getInstance().registrarView("relatorioView", new RelatorioView());
-		
+		RelatorioController.getInstance().registrarRelatorio("relatorioPaciente", new RelatorioPaciente());
+		RelatorioController.getInstance().registrarRelatorio("relatorioHistoricoPaciente", new RelatorioHistoricoPaciente());
 		
 		LoginController.getInstance().acaoEscolhida("loginView");
 

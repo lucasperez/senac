@@ -10,7 +10,6 @@ import model.Usuario;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 public class CriadorSessionFactory {
 

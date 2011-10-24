@@ -2,20 +2,23 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import net.sf.jasperreports.engine.JRException;
-
 import model.Paciente;
+import net.sf.jasperreports.engine.JRException;
+import report.Relatorio;
 import view.AbstractView;
-import view.relatorio.RelatorioHistoricoPacienteListView;
-import view.relatorio.RelatorioPacienteListView;
+import dao.ConsultaDao;
+import dao.PacienteDao;
 
 public class RelatorioController extends AbstractController<Paciente> {
 
 	private static RelatorioController singleton = null;
 	private Map<String,AbstractView<Paciente>> views = new HashMap<String, AbstractView<Paciente>>();
+	@SuppressWarnings("rawtypes")
+	private Map<String,Relatorio> relatorios = new HashMap<String, Relatorio>();
+	private PacienteDao pacienteDao; 
+	private ConsultaDao consultaDao;
 			
 	public static RelatorioController getInstance()
 	{
@@ -28,10 +31,12 @@ public class RelatorioController extends AbstractController<Paciente> {
 	private RelatorioController() {
 		this.views = new HashMap<String, AbstractView<Paciente>>();
 		acoes.put(0, "relatorioView");
-		acoes.put(1, "relatorioPacienteListView");
-		acoes.put(2, "relatorioHistoricoPacienteListView");
+		acoes.put(1, "relatorioPaciente");
+		acoes.put(2, "relatorioHistoricoPaciente");
 		acoes.put(3, "mainView");
-		}
+		this.pacienteDao = new PacienteDao();
+		this.consultaDao = new ConsultaDao();
+	}
 	
 	@Override
 	public RelatorioController registrarView(String acao,AbstractView<Paciente> view) {
@@ -39,15 +44,22 @@ public class RelatorioController extends AbstractController<Paciente> {
 		return this;
 	}
 	
+	@SuppressWarnings("rawtypes")
+	public RelatorioController registrarRelatorio(String acao,Relatorio relatorio) {
+		this.relatorios.put(acao, relatorio);
+		return this;
+	}
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void acaoEscolhida(String acao) {
 		if (acao == null) {
 			redirecionaParaMenu();
 		}
-		else if (acao.equals("relatorioPacienteListView")) {
-			RelatorioPacienteListView relatorio = new RelatorioPacienteListView();
+		else if (acao.equals("relatorioPaciente")) {
+
 			try {
-				relatorio.gerar("ListarPacientes.jrxml","Lista de Pacientes");
+				relatorios.get(acao).gerar("ListarPacientes.jrxml","Lista de Pacientes", "Lista_Pacientes.pdf", pacienteDao.listaPacientes());
 			} catch (JRException e) {
 				redirecionaParaMenu();
 			} catch (SQLException e) {
@@ -59,10 +71,10 @@ public class RelatorioController extends AbstractController<Paciente> {
 			}
 			
 		}
-		else if (acao.equals("relatorioHistoricoPacienteListView")) {
-			RelatorioHistoricoPacienteListView relatorio = new RelatorioHistoricoPacienteListView();
+		else if (acao.equals("relatorioHistoricoPaciente")) {
+			
 			try {
-				relatorio.gerar("ListarHistoricoPacientes.jrxml","Lista Historico de Pacientes");
+				relatorios.get(acao).gerar("ListarHistoricoPacientes.jrxml","Lista Historico de Pacientes", "Lista_Historico_Pacientes.pdf", consultaDao.listaConsultas());
 			} catch (JRException e) {
 				redirecionaParaMenu();
 			} catch (SQLException e) {
@@ -72,6 +84,8 @@ public class RelatorioController extends AbstractController<Paciente> {
 			}finally{
 				this.acaoEscolhida("relatorioView");
 			}
+			
+			
 			
 		}
 		
@@ -104,9 +118,5 @@ public class RelatorioController extends AbstractController<Paciente> {
 		
 		this.acaoEscolhida("relatorioView");
 	}
-	
-	
-
-
 		
 }

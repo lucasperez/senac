@@ -4,47 +4,47 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import model.Medico;
+import model.Atendente;
 import view.AbstractView;
-import dao.MedicoDao;
+import dao.AtendenteDao;
 
-public class MedicoController extends AbstractController<Medico> {
+public class AtendenteController extends AbstractController<Atendente> {
 
-	private static MedicoController singleton = null;
-	private Map<String,AbstractView<Medico>> views = new HashMap<String, AbstractView<Medico>>();
-	private MedicoDao medicoDao;
+	private static AtendenteController singleton = null;
+	private Map<String,AbstractView<Atendente>> views = new HashMap<String, AbstractView<Atendente>>();
+	private AtendenteDao atendenteDao;
 	
 	/**
 	 * Método responsável pela garantia de que só existe 1 único objeto controller dentro do sistema
 	 * Uso do padrão singleton para garantir. 	
-	 * @return {@link MedicoController}
+	 * @return {@link AtendenteController}
 	 */
-	public static MedicoController getInstance()
+	public static AtendenteController getInstance()
 	{
 		if (singleton == null)
-			singleton = new MedicoController();
+			singleton = new AtendenteController();
 		
 		return singleton;
 	}	
 	/**
 	 * Construtor privado que só pode ser acessado via getInstance
 	 */
-	private MedicoController() {
-		this.views = new HashMap<String, AbstractView<Medico>>();
-		acoes.put(0, "medicoView");
-		acoes.put(1, "medicoListView");
-		acoes.put(2, "medicoFormView");
-		acoes.put(3, "medicoAlterarView");
-		acoes.put(4, "medicoExcluirView");
+	private AtendenteController() {
+		this.views = new HashMap<String, AbstractView<Atendente>>();
+		acoes.put(0, "atendenteView");
+		acoes.put(1, "atendenteListView");
+		acoes.put(2, "atendenteFormView");
+		acoes.put(3, "atendenteAlterarView");
+		acoes.put(4, "atendenteExcluirView");
 		acoes.put(5, "mainView");
-		medicoDao = new MedicoDao();
+		atendenteDao = new AtendenteDao();
 	}
 	
 	/**
 	 * Implementação do método registrarView
 	 */
 	@Override
-	public MedicoController registrarView(String acao,AbstractView<Medico> view) {
+	public AtendenteController registrarView(String acao,AbstractView<Atendente> view) {
 		this.views.put(acao, view);
 		return this;
 	}
@@ -57,28 +57,30 @@ public class MedicoController extends AbstractController<Medico> {
 		if (acao == null) {
 			redirecionaParaMenu();
 		}
-		else if (acao.equals("medicoFormView")) {
+		else if (acao.equals("atendenteFormView")) {
 			views.get(acao).setListModelo(null);
 			views.get(acao).setModelo(null);
 			renderizaView(acao);
 		}
-		else if (acao.equals("medicoListView")) {
-			views.get(acao).setListModelo(listaMedicos());
+		else if (acao.equals("atendenteListView")) {
+			views.get(acao).setListModelo(listaAtendentes());
 			renderizaView(acao);
 		}
 		else if (acao.equals("salvar")) {
-			if (salvarMedico(views.get("medicoFormView").getModelo()));
-			renderizaView("medicoView");
+			if (salvarAtendente(views.get("atendenteFormView").getModelo()));
+			renderizaView("atendenteView");
 			
 		}
 		else if (acao.equals("alterar")) {
-			views.get("medicoFormView").setModelo(carregaMedicoPorId(views.get("medicoAlterarView").getModelo().getId()));
-			renderizaView("medicoFormView");
+			views.get("atendenteFormView").setModelo(carregaAtendentePorId(views.get("atendenteAlterarView").getModelo().getId()));
+			renderizaView("atendenteFormView");
 			
 		}
 		else if (acao.equals("excluir")) {
-			if (excluirMedico(carregaMedicoPorId(views.get("medicoExcluirView").getModelo().getId())));
-			renderizaView("medicoView");
+			if (excluirAtendente(carregaAtendentePorId(views.get("atendenteExcluirView").getModelo().getId())));
+			renderizaView("atendenteView");
+			
+			
 		}
 		else if (acao.equals("mainView")) {
 			MainController.getInstance().acaoEscolhida(acao);
@@ -113,14 +115,14 @@ public class MedicoController extends AbstractController<Medico> {
 			e1.printStackTrace();
 		}
 		
-		this.acaoEscolhida("medicoView");
+		this.acaoEscolhida("atendenteView");
 	}
 	/**
 	 * Método que vai ao Dao e lista todos os médicos
 	 * @return {@link List}
 	 */
-	private List<Medico> listaMedicos(){
-		return medicoDao.listaMedicos();
+	private List<Atendente> listaAtendentes(){
+		return atendenteDao.listaAtendentes();
 	}
 	
 	/**
@@ -128,8 +130,8 @@ public class MedicoController extends AbstractController<Medico> {
 	 * @param medico
 	 * @return {@link Boolean}
 	 */
-	public boolean salvarMedico(Medico medico) {
-		if (medicoDao.save(medico)) 
+	public boolean salvarAtendente(Atendente atendente) {
+		if (atendenteDao.save(atendente)) 
 			return true;
 		return false;
 		
@@ -139,8 +141,8 @@ public class MedicoController extends AbstractController<Medico> {
 	 * @param id
 	 * @return {@link Medico}
 	 */
-	public Medico carregaMedicoPorId(Long id) {
-		return medicoDao.carregaMedicoPorId(id);
+	public Atendente carregaAtendentePorId(Long id) {
+		return atendenteDao.carregaAtendentePorId(id);
 		
 	}
 	/**
@@ -148,8 +150,8 @@ public class MedicoController extends AbstractController<Medico> {
 	 * @param medico
 	 * @return boolean
 	 */
-	public boolean excluirMedico(Medico medico) {
-		if (medicoDao.excluir(medico)) 
+	public boolean excluirAtendente(Atendente atendente) {
+		if (atendenteDao.excluir(atendente)) 
 			return true;
 		return false;
 		

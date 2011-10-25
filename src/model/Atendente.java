@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 
 @Entity
-public class Atendente extends Usuario implements Serializable{
+public class Atendente extends Usuario implements IModel, Serializable{
 	
 	/**
 	 * 

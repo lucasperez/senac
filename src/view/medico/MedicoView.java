@@ -27,7 +27,8 @@ public class MedicoView extends AbstractView<Medico> {
 		System.out.println("\t2- Incluir Médico");
 		System.out.println("\t3- Alterar Médico");
 		System.out.println("\t4- Excluir Médico");
-		System.out.println("\t5- Voltar ao Menu Anterior");
+		System.out.println("\t5- Importar Médico do CSV");
+		System.out.println("\t6- Voltar ao Menu Anterior");
 		
 		int opcao = sc.nextInt();
 		medicoController.acaoEscolhida(medicoController.decideAcao(opcao));

@@ -1,24 +1,24 @@
-package view.medico;
+package view.atendente;
 
 import java.util.Scanner;
 
+import model.Atendente;
 import model.Medico;
 import view.AbstractView;
-import controller.MedicoController;
+import controller.AtendenteController;
 
-public class MedicoFormView extends AbstractView<Medico> {
+public class AtendenteFormView extends AbstractView<Atendente> {
 	
-	private MedicoController medicoController;
+	private AtendenteController atendenteController;
 	private String mensagemNome;
-	private String mensagemCrm;
-	private String mensagemEspecialidade;
+	private String mensagemCpf;
 	private String mensagemLogin;
 	private String mensagemSenha;
 	private Scanner sc;
 	
-	public MedicoFormView () {
+	public AtendenteFormView () {
 		sc = new Scanner(System.in);
-		this.medicoController = MedicoController.getInstance();
+		this.atendenteController = AtendenteController.getInstance();
 	}
 	/**
 	 * Implementação do método desenhaTela
@@ -28,29 +28,24 @@ public class MedicoFormView extends AbstractView<Medico> {
 		
 		defineLabels();
 		
-		Medico m = defineModelo();
+		Atendente a = defineModelo();
 		
-		interfaceUsuario(m);
+		interfaceUsuario(a);
 		
-		medicoController.acaoEscolhida("salvar");
+		atendenteController.acaoEscolhida("salvar");
 		
 	}
 	/**
 	 * Método que escreve na tela, recupera dados digitados e popula modelo (neste caso de consulta)
 	 * @param c
 	 */
-	private void interfaceUsuario(Medico m) {
+	private void interfaceUsuario(Atendente a) {
 		System.out.println(mensagemNome);
 		String nome = sc.nextLine();
 		sc.nextLine();
 		
-		System.out.println(mensagemCrm);
-		String crm = sc.next();
-		
-		sc.nextLine();
-		
-		System.out.println(mensagemEspecialidade);
-		String especialidade = sc.nextLine();
+		System.out.println(mensagemCpf);
+		String cpf = sc.next();
 		
 		sc.nextLine();
 		
@@ -59,28 +54,25 @@ public class MedicoFormView extends AbstractView<Medico> {
 		System.out.println(mensagemSenha);
 		String senha = sc.next();
 			
-		m.setCrm(crm);
-		m.setEspecialidade(especialidade);
-		m.setLogin(login);
-		m.setNome(nome);
-		m.setSenha(senha);
+		a.setCpf(cpf);
+		a.setLogin(login);
+		a.setNome(nome);
+		a.setSenha(senha);
 		
-		this.setModelo(m);
+		this.setModelo(a);
 	}
 	/**
 	 * Método usado apenas para definir as labels da tela
 	 */
 	private void defineLabels() {
 		mensagemNome = "Digite o nome ";
-		mensagemCrm = "Digite o crm: ";
-		mensagemEspecialidade = "Digite o especialidade: ";
+		mensagemCpf = "Digite o cpf: ";
 		mensagemLogin = "Digite o login: ";
 		mensagemSenha = "Digite o senha: ";
 		
 		if (this.getModelo() != null) { 
 			mensagemNome+="("+this.getModelo().getNome()+")"; 
-			mensagemCrm+="("+this.getModelo().getCrm()+")";
-			mensagemEspecialidade+="("+this.getModelo().getEspecialidade()+")";
+			mensagemCpf+="("+this.getModelo().getCpf()+")";
 			mensagemLogin+="("+this.getModelo().getLogin()+")";
 			mensagemSenha+="("+this.getModelo().getSenha()+")";
 		}
@@ -89,16 +81,13 @@ public class MedicoFormView extends AbstractView<Medico> {
 	 * Método que define se vai criar um novo modelo ou usar o que já foi setado no controller
 	 * @return {@link Medico}
 	 */
-	private Medico defineModelo() {
-		Medico m = null;
+	private Atendente defineModelo() {
+		Atendente a = null;
 		if (this.getModelo() == null) 
-			m = new Medico();
+			a = new Atendente();
 		else {
-			m = this.getModelo();
+			a = this.getModelo();
 		}
-		return m;
+		return a;
 	}
-	
-	
-
 }

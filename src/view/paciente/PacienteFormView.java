@@ -41,22 +41,18 @@ public class PacienteFormView extends AbstractView<Paciente> {
 	 */
 	private void interfaceUsuario(Paciente p) {
 		System.out.println(mensagemNome);
-		String nome = sc.nextLine();
+		p.setNome(sc.nextLine());
 		
 		sc.nextLine();
 		
 		System.out.println(mensagemDataNascimento);
-		String data = sc.next();
-		
-		System.out.println(mensagemPlanoSaude);
-		String plano = sc.nextLine();
+		p.setDataNascimento(DataUtil.stringBrToDate(sc.next()));
 		
 		sc.nextLine();
 		
-		p.setNome(nome);
-		p.setDataNascimento(DataUtil.stringBrToDate(data));
-		p.setPlanoSaude(plano);
-		
+		System.out.println(mensagemPlanoSaude);
+		p.setPlanoSaude(sc.nextLine());
+			
 		this.setModelo(p);
 	}
 	/**
@@ -69,7 +65,7 @@ public class PacienteFormView extends AbstractView<Paciente> {
 		
 		if (this.getModelo() != null) { 
 			mensagemNome+="("+this.getModelo().getNome()+")"; 
-			mensagemDataNascimento+="("+this.getModelo().getDataNascimento()+")";
+			mensagemDataNascimento+="("+ DataUtil.dateUsToStringBr(this.getModelo().getDataNascimento())+")";
 			mensagemPlanoSaude+="("+this.getModelo().getPlanoSaude()+")";			
 		}
 	}

@@ -32,22 +32,12 @@ public abstract class DataUtil {
 	 * @param dataBrasileira
 	 * @return
 	 */
-	public static String dateUsToStringBr(Date dataAmericana) {  
+	public static String dateUsToStringBr(Date data) {  
 		 
 		String dataString = "";
 	    
-	    try 
-	    {  
-	    	SimpleDateFormat in  = new SimpleDateFormat("yyyy-MM-dd");  
-	    	SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
-	    	  
-	    	dataString = out.format(in.parse(dataAmericana.toString()));
-
-	    } 
-	    catch (ParseException e) 
-		{
-			e.printStackTrace();  
-		}
+	    SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
+	    dataString = out.format(data);
 	    
 	    return dataString;	    
 	} 

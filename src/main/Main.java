@@ -10,6 +10,11 @@ import report.RelatorioHistoricoPaciente;
 import report.RelatorioPaciente;
 import report.RelatorioReceituario;
 import teste.TestaInternacionalizacao;
+import view.atendente.AtendenteAlterarView;
+import view.atendente.AtendenteExcluirView;
+import view.atendente.AtendenteFormView;
+import view.atendente.AtendenteListView;
+import view.atendente.AtendenteView;
 import view.consulta.AgendarConsultaView;
 import view.consulta.AtualizarConsultaView;
 import view.consulta.CancelarConsultaView;
@@ -19,7 +24,6 @@ import view.main.MainView;
 import view.medico.MedicoAlterarView;
 import view.medico.MedicoExcluirView;
 import view.medico.MedicoFormView;
-import view.medico.MedicoImportarView;
 import view.medico.MedicoListView;
 import view.medico.MedicoView;
 import view.paciente.PacienteAlterarView;
@@ -31,6 +35,7 @@ import view.relatorio.AtestadoView;
 import view.relatorio.ConsultaAgendadaView;
 import view.relatorio.ReceituarioView;
 import view.relatorio.RelatorioView;
+import controller.AtendenteController;
 import controller.ConsultaController;
 import controller.LoginController;
 import controller.MainController;
@@ -60,8 +65,10 @@ public class Main {
 		MainController.getInstance().registrarView("mainView", new MainView());
 		MainController.getInstance().registrarView("medicoView", new MedicoView());
 		MainController.getInstance().registrarView("pacienteView", new PacienteView());
+		MainController.getInstance().registrarView("atendenteView", new AtendenteView());
 		MainController.getInstance().registrarView("consultaView", new ConsultaView());
 		MainController.getInstance().registrarView("relatorioView", new RelatorioView());
+		
 		
 				
 		MedicoController.getInstance().registrarView("medicoView", new MedicoView());
@@ -69,7 +76,6 @@ public class Main {
 		MedicoController.getInstance().registrarView("medicoFormView", new MedicoFormView());
 		MedicoController.getInstance().registrarView("medicoAlterarView", new MedicoAlterarView());
 		MedicoController.getInstance().registrarView("medicoExcluirView", new MedicoExcluirView());
-		MedicoController.getInstance().registrarView("medicoImporarView", new MedicoImportarView());
 		
 		PacienteController.getInstance().registrarView("pacienteView", new PacienteView());
 		PacienteController.getInstance().registrarView("pacienteListView", new PacienteListView());
@@ -77,6 +83,12 @@ public class Main {
 		PacienteController.getInstance().registrarView("pacienteAlterarView", new PacienteAlterarView());
 		PacienteController.getInstance().registrarView("pacienteExcluirView", new PacienteExcluirView());
 
+		AtendenteController.getInstance().registrarView("atendenteView", new AtendenteView());
+		AtendenteController.getInstance().registrarView("atendenteListView", new AtendenteListView());
+		AtendenteController.getInstance().registrarView("atendenteFormView", new AtendenteFormView());
+		AtendenteController.getInstance().registrarView("atendenteAlterarView", new AtendenteAlterarView());
+		AtendenteController.getInstance().registrarView("atendenteExcluirView", new AtendenteExcluirView());
+		
 		ConsultaController.getInstance().registrarView("consultaView", new ConsultaView());
 		ConsultaController.getInstance().registrarView("agendarConsultaView", new AgendarConsultaView());
 		ConsultaController.getInstance().registrarView("cancelarConsultaView", new CancelarConsultaView());

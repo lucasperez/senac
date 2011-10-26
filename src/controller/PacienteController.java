@@ -60,6 +60,8 @@ public class PacienteController extends AbstractController<Paciente> {
 			renderizaView(acao);
 		}
 		else if (acao.equals("pacienteListView")) {
+			views.get(acao).setListModelo(null);
+			views.get(acao).setModelo(null);
 			views.get(acao).setListModelo(listaPacientes());
 			renderizaView(acao);
 		}

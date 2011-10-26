@@ -19,6 +19,6 @@ public interface Relatorio<T extends IModel> {
 	 * Método gerar: Este é o método que deve ser escrito nas classes que implementam essa interface
 	 * Recebe uma lista de objetos do tipo que implemente IModel e gera o PDF
 	 */
-	public void gerar(String layout, String titulo, String nomeArquivo, List<T> t) throws JRException, SQLException,ClassNotFoundException;
+	public void gerar(String layout, String titulo, String texto, String nomeArquivo, List<T> t) throws JRException, SQLException,ClassNotFoundException;
 	
 }

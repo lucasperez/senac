@@ -3,7 +3,8 @@ package report;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import model.Paciente;
+
+import model.Consulta;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -15,12 +16,13 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class RelatorioPaciente implements Relatorio<Paciente>{
+public class RelatorioConsultaAgendada implements Relatorio<Consulta>{
+
 	/**
 	 * Implementação do método gerar
 	 */
 	@Override
-	public void gerar(String layout, String titulo, String nomeArquivo, String texto, List<Paciente> listaPacientes) throws JRException, SQLException,ClassNotFoundException {
+	public void gerar(String layout, String titulo, String nomeArquivo,	String texto, List<Consulta> listaConsultas) throws JRException, SQLException,ClassNotFoundException {
 
 		// gerando o jasper design
 		JasperDesign desenho = JRXmlLoader.load(layout);
@@ -30,7 +32,7 @@ public class RelatorioPaciente implements Relatorio<Paciente>{
 		
 		
 		// implementação da interface JRDataSource para DataSource ResultSet
-		JRBeanCollectionDataSource jrRS = new JRBeanCollectionDataSource(listaPacientes);
+		JRBeanCollectionDataSource jrRS = new JRBeanCollectionDataSource(listaConsultas);
 		
 		// executa o relatório
 		HashMap<String, Object> parametros = new HashMap<String, Object>();
@@ -45,7 +47,7 @@ public class RelatorioPaciente implements Relatorio<Paciente>{
 		JasperViewer.viewReport(impressao, false);
 	}
 
-	
+
 }
 
 

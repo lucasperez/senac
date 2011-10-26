@@ -22,7 +22,7 @@ public class RelatorioHistoricoPaciente implements Relatorio<Consulta>{
 	 * Implementação do método gerar
 	 */
 	@Override
-	public void gerar(String layout, String titulo, String nomeArquivo,	List<Consulta> listaConsultas) throws JRException, SQLException,ClassNotFoundException {
+	public void gerar(String layout, String titulo, String nomeArquivo,	String texto, List<Consulta> listaConsultas) throws JRException, SQLException,ClassNotFoundException {
 
 		// gerando o jasper design
 		JasperDesign desenho = JRXmlLoader.load(layout);
@@ -46,6 +46,7 @@ public class RelatorioHistoricoPaciente implements Relatorio<Consulta>{
 		// exibe o resultado
 		JasperViewer.viewReport(impressao, false);
 	}
+
 
 	
 }

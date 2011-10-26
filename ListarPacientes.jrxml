@@ -15,11 +15,11 @@
 	<title>
 		<band height="131" splitType="Stretch">
 			<staticText>
-				<reportElement x="126" y="29" width="302" height="46" forecolor="#0066CC"/>
+				<reportElement x="109" y="29" width="334" height="46" forecolor="#0066CC"/>
 				<textElement>
 					<font fontName="Arial Black" size="30"/>
 				</textElement>
-				<text><![CDATA[Lista de Pacentes]]></text>
+				<text><![CDATA[Lista de Pacientes]]></text>
 			</staticText>
 		</band>
 	</title>

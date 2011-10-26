@@ -2,9 +2,9 @@ package view.medico;
 
 import java.util.Scanner;
 
+import controller.MedicoController;
 import model.Medico;
 import view.AbstractView;
-import controller.MedicoController;
 
 public class MedicoExcluirView extends AbstractView<Medico> {
 

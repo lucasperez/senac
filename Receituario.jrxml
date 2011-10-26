@@ -6,102 +6,86 @@
 	<queryString language="hql">
 		<![CDATA[]]>
 	</queryString>
+	<field name="paciente.nome" class="java.lang.String"/>
 	<field name="data" class="java.sql.Timestamp"/>
-	<field name="paciente" class="java.lang.Object"/>
-	<field name="status" class="java.lang.Object"/>
-	<field name="medico" class="java.lang.Object"/>
-	<field name="receita" class="java.lang.Object"/>
-	<field name="sala" class="java.lang.String"/>
+	<field name="receita.medicamento" class="java.lang.String"/>
+	<field name="receita.prescricao" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="131" splitType="Stretch">
 			<staticText>
-				<reportElement x="46" y="30" width="509" height="46" forecolor="#0066CC"/>
+				<reportElement x="68" y="27" width="435" height="46" forecolor="#0066CC"/>
 				<textElement>
 					<font fontName="Arial Black" size="30"/>
 				</textElement>
-				<text><![CDATA[Lista Histórico de Pacientes]]></text>
+				<text><![CDATA[Receituario da Consulta]]></text>
 			</staticText>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="22" splitType="Stretch">
 			<staticText>
-				<reportElement x="4" y="2" width="100" height="20" forecolor="#CC0000"/>
+				<reportElement x="26" y="0" width="100" height="20" forecolor="#990000"/>
 				<textElement>
 					<font fontName="Arial Black" size="13"/>
 				</textElement>
 				<text><![CDATA[Paciente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="104" y="2" width="100" height="20" forecolor="#CC0000"/>
+				<reportElement x="168" y="2" width="135" height="20" forecolor="#990000"/>
 				<textElement>
 					<font fontName="Arial Black" size="13"/>
 				</textElement>
-				<text><![CDATA[Status]]></text>
+				<text><![CDATA[Data da Consulta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="204" y="2" width="100" height="20" forecolor="#CC0000"/>
+				<reportElement x="318" y="0" width="112" height="20" forecolor="#990000"/>
 				<textElement>
 					<font fontName="Arial Black" size="13"/>
 				</textElement>
-				<text><![CDATA[Receita]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="350" y="2" width="100" height="20" forecolor="#CC0000"/>
-				<textElement>
-					<font fontName="Arial Black" size="13"/>
-				</textElement>
-				<text><![CDATA[Medico]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="450" y="2" width="100" height="20" forecolor="#CC0000"/>
-				<textElement>
-					<font fontName="Arial Black" size="13"/>
-				</textElement>
-				<text><![CDATA[Data]]></text>
+				<text><![CDATA[Medicamento]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="23" splitType="Stretch">
-			<textField isBlankWhenNull="false">
-				<reportElement x="4" y="3" width="100" height="20" forecolor="#0066CC"/>
+		<band height="244" splitType="Stretch">
+			<textField>
+				<reportElement key="textField" x="26" y="3" width="142" height="20" forecolor="#0066CC"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente}.getNome()]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="false">
-				<reportElement x="104" y="3" width="100" height="20" forecolor="#0066CC"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{status}.getDescricao()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paciente.nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="204" y="3" width="146" height="20" forecolor="#0066CC"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{receita}.getMedicamento()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="350" y="3" width="100" height="20" forecolor="#0066CC"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{medico}.getNome()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="450" y="3" width="100" height="20" forecolor="#0066CC"/>
+				<reportElement key="textField" x="168" y="3" width="197" height="20" forecolor="#0066CC"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement key="textField" x="318" y="3" width="146" height="20" forecolor="#0066CC"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{receita.medicamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="textField" x="26" y="65" width="514" height="169" forecolor="#0066CC"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{receita.prescricao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="45" width="112" height="20" forecolor="#990000"/>
+				<textElement>
+					<font fontName="Arial Black" size="13"/>
+				</textElement>
+				<text><![CDATA[Prescricao]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<summary>

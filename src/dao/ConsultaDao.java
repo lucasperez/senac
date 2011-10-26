@@ -1,11 +1,14 @@
 package dao;
 
+import java.util.Date;
 import java.util.List;
 
 import model.Consulta;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 
 import util.CriadorSessionFactory;
@@ -28,6 +31,21 @@ public class ConsultaDao {
 	@SuppressWarnings("unchecked")
 	public List<Consulta> listaConsultas() {
 		return (List<Consulta>)session.createCriteria(Consulta.class).addOrder(Order.asc("paciente")).list();
+	}
+
+	/**
+	 * Lista todos os objetos por perído
+	 * @return {@link List}
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Consulta> listaConsultas(Date dataIni, Date dataFim) {
+		Criteria criteria = session.createCriteria(Consulta.class);
+		
+		criteria.add(Expression.between("data", dataIni, dataFim));
+		
+		
+		criteria.addOrder(Order.asc("data"));
+		return (List<Consulta>)criteria.list();
 	}
 	/**
 	 * Salva o objeto

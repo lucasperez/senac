@@ -6,7 +6,9 @@ import java.util.Map;
 
 import model.Medico;
 import view.AbstractView;
+import view.medico.MedicoImportarView;
 import dao.MedicoDao;
+import util.UtilsArquivo;
 
 public class MedicoController extends AbstractController<Medico> {
 
@@ -36,7 +38,8 @@ public class MedicoController extends AbstractController<Medico> {
 		acoes.put(2, "medicoFormView");
 		acoes.put(3, "medicoAlterarView");
 		acoes.put(4, "medicoExcluirView");
-		acoes.put(5, "mainView");
+		acoes.put(5, "medicoImportarView");
+		acoes.put(6, "mainView");
 		medicoDao = new MedicoDao();
 	}
 	
@@ -79,6 +82,12 @@ public class MedicoController extends AbstractController<Medico> {
 		else if (acao.equals("excluir")) {
 			if (excluirMedico(carregaMedicoPorId(views.get("medicoExcluirView").getModelo().getId())));
 			renderizaView("medicoView");
+			
+			
+		}
+		else if (acao.equals("importar")){
+			String s = ((MedicoImportarView) views.get("medicoImportarView")).getCaminhoArquivo();
+			Importar(s);
 		}
 		else if (acao.equals("mainView")) {
 			MainController.getInstance().acaoEscolhida(acao);
@@ -154,5 +163,24 @@ public class MedicoController extends AbstractController<Medico> {
 		return false;
 		
 	}
+	
+	private void Importar(String caminhoArquivo){
+		try {
+			String s = UtilsArquivo.carregar(caminhoArquivo);
+			String[] linha = s.split("\n");
+			for (int i=0; i< linha.length; i++) {
+				String[] col = linha[i].split(";");
+				Medico medico = new Medico();
+				medico.setCrm(col[0]);
+				medico.setEspecialidade(col[1]);
+				medico.setNome(col[2]);
+				salvarMedico(medico);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			redirecionaParaMenu();
+		}
+	}	
 	
 }
